@@ -1,5 +1,6 @@
 {
-  "name": "axios-wrapper",
+  "name": "@rainxh11/axios-wrapper",
+  "private": false,
   "version": "1.0.0",
   "description": "Axios Wrapper, which allows working with Axios to be less messy, more concise, clear, and functional.",
   "type": "module",
@@ -8,9 +9,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rainxh11/axios-wrapper.git"
-  },
-  "publishConfig": {
-    "@rainxh11:registry": "https://npm.pkg.github.com"
   },
   "files": [
     "dist/**/*"

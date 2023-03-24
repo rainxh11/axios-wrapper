@@ -3,14 +3,14 @@ a wrapper that allows working with **Axios** to be less messy, more concise, cle
 
 ## Install
 ```shell
-yarn add axios-wrapper
+yarn add @rainxh11/axios-wrapper
 # npm
-npm install --save axios-wrapper
+npm install --save @rainxh11/axios-wrapper
 ```
 
 ## Usage Example:
 ```typescript
-import { createAxios } from 'axios-wrapper'
+import { createAxios } from '@rainxh11/axios-wrapper'
 
 // create an axios instance & request function
 const { client: httpClient, createRequestFn } = createAxios(
