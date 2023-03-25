@@ -13,12 +13,14 @@ npm install --save @rainxh11/axios-wrapper
 import { createAxios } from '@rainxh11/axios-wrapper'
 
 // create an axios instance & request function
-const { client: httpClient, createRequestFn } = createAxios(
+const { client: httpClient, createRequestFn } = createAxios(instance => {
   // with custom instance interceptors, configurations...etc
-  instance.interceptors.request.use(req => {
-    console.log(`${req.method}`, req.url)
-    req.headers.Authorization = `Bearer ${getSomeToken()}`
-  }),
+    instance.interceptors.request.use(req => {
+      console.log(`${req.method}`, req.url)
+      req.headers.Authorization = `Bearer ${getSomeToken()}`
+    })
+    return instance
+  },
   // Axios Defaults
   {
     baseURL: 'https://random-data-api.com/api/v2',
