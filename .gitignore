@@ -115,3 +115,6 @@ dist
 .idea/
 .vscode/
 tools/dev
+
+tsconfig.tsbuildinfo
+pnpm-lock.yaml
