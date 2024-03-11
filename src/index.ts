@@ -1,9 +1,10 @@
 import axios, {
-	type AxiosError,
 	type AxiosInstance,
 	type AxiosResponse,
 	type CreateAxiosDefaults,
+	type AxiosError,
 } from "axios";
+import { ErrPromise } from "./typed-promise";
 
 export function createAxios(
 	configInstanceFn: (instance: AxiosInstance) => AxiosInstance,
@@ -17,15 +18,15 @@ export function createAxios(
 			instance: AxiosInstance,
 			args?: TInput,
 			signal?: AbortSignal,
-		) => Promise<AxiosResponse<unknown>>,
-	): (args?: TInput, signal?: AbortSignal) => Promise<TResponse> {
+		) => ErrPromise<AxiosResponse<unknown>, TError>,
+	): (args?: TInput, signal?: AbortSignal) => ErrPromise<TResponse, TError> {
 		return (args?: TInput, signal?: AbortSignal) => {
-			return new Promise<TResponse>((resolve, reject) => {
+			return new ErrPromise<TResponse, TError>((resolve, reject) => {
 				instanceFn(client, args, signal)
 					.then((res) => resolve(res?.data as TResponse))
-					.catch((error) => {
-						if (logErrFn) logErrFn(error as AxiosError<TError>);
-						reject((error as AxiosError<TError>).response?.data);
+					.catch((error: AxiosError<TError>) => {
+						if (logErrFn) logErrFn(error);
+						reject(error?.response?.data as TError);
 					});
 			});
 		};

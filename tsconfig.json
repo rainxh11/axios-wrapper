@@ -33,5 +33,5 @@
     "baseUrl": "."
   },
   "exclude": ["dist", "node_modules"],
-  "include": ["src"]
+  "include": ["src", "src/typed-promise.ts"]
 }
